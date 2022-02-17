@@ -11,9 +11,9 @@ int finished[1] = {0};
 #define DIVIDE_AMOUNT 2.3
 #define PERFER_WORDS_AMOUNT 1.10
 #define AMOUNT_EXTRA_PER_ROUND 1.10
-
 #define DEBUG_MODE 1
 
+//function gets the results of the user input, and adds the required letters to the blacklist, greenlist, and yellowlist
 void getResultAndAsign(char input[7], char blackList[], char greenLetters[], char yellowLetters[])
 {
     char results[6] = {0};
@@ -55,7 +55,7 @@ void getResultAndAsign(char input[7], char blackList[], char greenLetters[], cha
         }
     }
 }
-
+//function get a word from the user
 void getWordInput(char input[], char array[][ARRAY_SIZE])
 {
     int notInList=1;
@@ -74,7 +74,7 @@ void getWordInput(char input[], char array[][ARRAY_SIZE])
         }
     }
 }
-
+//function goes through the words in the dictionary, and calculates which of them follow the rules
 void calculateAllowedWords(char array[][6], char blacklist[26], char greenLetters[], char yellowLettersAll[][ARRAY_SIZE])
 {
     for(int i=0; i<ARRAY_LENGTH; i++)
@@ -145,7 +145,7 @@ void calculateAllowedWords(char array[][6], char blacklist[26], char greenLetter
         }
     }
 }
-
+//function calculates the points for a word
 void calculatePoints(float priority[], int priorityLoc, int amountEachLetter[][26], float amountPoints, int amountLetterLoc)
 {
     if(amountEachLetter[priorityLoc][amountLetterLoc]==0)
@@ -164,7 +164,7 @@ void calculatePoints(float priority[], int priorityLoc, int amountEachLetter[][2
     }
 
 }
-
+//function calculates the priority(amount of points it has) of all the words
 void priorityCal(float priority[], char array[][ARRAY_SIZE], char perferedArray[][ARRAY_SIZE])
 {
     int amtEachLetter[ARRAY_LENGTH][26] = {0};
@@ -191,6 +191,7 @@ void priorityCal(float priority[], char array[][ARRAY_SIZE], char perferedArray[
         }
     }         
 }
+//function calculates the points of the perfered words
 void priorityCalPerfer(float priority[], char array[][ARRAY_SIZE], char perferedArray[][ARRAY_SIZE], int round)
 {
     for(int i=0; i<ARRAY_LENGTH; i++)
@@ -204,7 +205,7 @@ void priorityCalPerfer(float priority[], char array[][ARRAY_SIZE], char perfered
         }
     }
 }
-
+//function does a turn (getting inputs, and calculating results)
 int doATurn(char yellowLetters[], char yellowLettersAll[][ARRAY_SIZE], char blacklist[], char greenLetters[], char array[][ARRAY_SIZE], float priority[], int amountWords, char perferedArray[][ARRAY_SIZE], int round)
 {
     int temp=0;
@@ -234,7 +235,7 @@ int doATurn(char yellowLetters[], char yellowLettersAll[][ARRAY_SIZE], char blac
             highestNumLoc=i;
         }
     }
-    printf("\nAmount of Word Possibilites is: %d", amountWords);
+    printf("\nAmount of Word Possibilites is: %d\n", amountWords);
     
     if(amountWords>3)
     {   
@@ -266,6 +267,7 @@ int doATurn(char yellowLetters[], char yellowLettersAll[][ARRAY_SIZE], char blac
 
 int main()  
 {
+    //array of wordle words
     char perferedArray[][ARRAY_SIZE] = {
     "aback",
     "abase",
@@ -4898,6 +4900,7 @@ int main()
     "zesty",
     "zonal"
     };
+    //array of the dictionary words
     char array[][ARRAY_SIZE] = {
     "cigar",
     "rebut",
@@ -17872,6 +17875,7 @@ int main()
     "zymes",
     "zymic",
     };
+    //array of the points for everyword
     float showingPriority[ARRAY_LENGTH+1] = {0};
     int amountOfWords=ARRAY_LENGTH, timesRan=0;
     char blacklist[ENGLISH_VOCAB_STRING] = {0};
@@ -17881,7 +17885,7 @@ int main()
     calculateAllowedWords(array, blacklist, greenLetters, yellowLettersAll);
     priorityCal(showingPriority, array, perferedArray);
     
-    printf("Welcome to Wordle Solver Made By AMZG studios!\nUse the Word 'arise' or 'crane' to begin! \n(note only type lowercase)\n");
+    printf("Welcome to Wordle Solver Made By AMZG studios!\nUse the Word 'arise' or 'retia' to begin! \n(note only type lowercase)\n");
 
     while(amountOfWords!=0 && timesRan<6 && finished[0]!=1)
     {
@@ -17891,5 +17895,4 @@ int main()
 
     printf("Press Any Key To Finish...");
     getch();
-    
 }
