@@ -13,5 +13,9 @@ begining.
 When all thats done, you can type in one of its 'top picks' or you can enter one of the
 other words that are available.
 
+# Specifications
+1) obviously only works on a PC, its an exe file
+2) Playing Through 42 offical wordle games, its average is 3.69
+3) Made By AMZG, dont steal it.
 
 
